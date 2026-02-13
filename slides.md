@@ -81,8 +81,20 @@ layout: section
 hideInToc: true
 ---
 
+# Install Claude Code
+
+```bash
+curl -fsSL https://claude.ai/install.sh | bash
+```
+
+---
+hideInToc: true
+---
+
 ```bash
 curl -fsSL swamp.club/install.sh | sh
 
 swamp repo init
 ```
+
+
