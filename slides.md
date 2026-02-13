@@ -6,7 +6,7 @@ theme: seriph
 background: https://cover.sli.dev
 # some information about your slides (markdown enabled)
 hideInToc: true
-title: KVM/QEMU Training
+title: Explorations with System Initiative Swamp
 author: Mischa Taylor
 info: |
   ## Slidev Starter Template
@@ -58,17 +58,11 @@ routeAlias: toc
 <Toc columns="2"/>
 
 ---
-layout: section
----
-
-# Install and configure libvirt
-
-<br>
-<br>
-<Link to="toc" title="Table of Contents"/>
-
----
 hideInToc: true
 ---
 
-# Install QEMU/KVM on Ubuntu 24.04
+# Ubuntu Server 24.04 VM
+
+---
+src: ./ubuntu-server-2404/ubuntu-server-2404-slides.md
+---
