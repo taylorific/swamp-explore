@@ -66,3 +66,23 @@ hideInToc: true
 ---
 src: ./ubuntu-server-2404/ubuntu-server-2404-slides.md
 ---
+
+---
+layout: section
+---
+
+# Install swamp
+
+<br>
+<br>
+<Link to="toc" title="Table of Contents"/>
+
+---
+hideInToc: true
+---
+
+```bash
+curl -fsSL swamp.club/install.sh | sh
+
+swamp repo init
+```
