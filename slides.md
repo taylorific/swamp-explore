@@ -27,7 +27,7 @@ themeConfig:
   paginationPagesDisabled: [1]
 ---
 
-# Virtual Machines with KVM/QEMU
+# Explorations with System Initiative Swamp
 
 ##### Mischa Taylor | 📧 <taylor@linux.com>
 
