@@ -50,8 +50,8 @@ sudo apt-get install curl
 ```
 
 ```bash
-mkdir ubuntu-server-2404
-cd ubuntu-server-2404
+mkdir swamp
+cd swamp
 ```
 
 ```bash
@@ -63,9 +63,9 @@ $ qemu-img info noble-server-cloudimg-amd64.img
 $ sudo qemu-img convert \
     -f qcow2 -O qcow2 \
     noble-server-cloudimg-amd64.img \
-    /var/lib/libvirt/images/ubuntu-server-2404.qcow2
+    /var/lib/libvirt/images/swamp.qcow2
 $ sudo qemu-img resize -f qcow2 \
-    /var/lib/libvirt/images/ubuntu-server-2404.qcow2 \
+    /var/lib/libvirt/images/swamp.qcow2 \
     64G
 ````
 
@@ -78,8 +78,8 @@ hideInToc: true
 ```bash
 # Required for NoCloud module to function, uniquely identifies instance
 cat >meta-data <<EOF
-instance-id: ubuntu-server-2404
-local-hostname: ubuntu-server-2404
+instance-id: swamp
+local-hostname: swamp
 EOF
 ```
 
@@ -92,7 +92,7 @@ hideInToc: true
 ```bash
 cat >user-data <<EOF
 #cloud-config
-hostname: ubuntu-server-2404
+hostname: swamp
 users:
   - name: autobot
     uid: 63112
@@ -124,12 +124,12 @@ sudo apt-get install genisoimage
 ```bash
 $ genisoimage \
     -input-charset utf-8 \
-    -output ubuntu-server-2404-cloud-init.img \
+    -output swamp-cloud-init.img \
     -volid cidata -rational-rock -joliet \
     user-data meta-data
 
-sudo cp ubuntu-server-2404-cloud-init.img \
-  /var/lib/libvirt/boot/ubuntu-server-2404-cloud-init.iso
+sudo cp swamp-cloud-init.img \
+  /var/lib/libvirt/boot/swamp-cloud-init.iso
 ```
 
 ---
@@ -139,13 +139,13 @@ hideInToc: true
 ```bash
 virt-install \
   --connect qemu:///system \
-  --name ubuntu-server-2404 \
+  --name swamp \
   --boot uefi \
-  --memory 3096 \
-  --vcpus 2 \
+  --memory 4096 \
+  --vcpus 4 \
   --os-variant ubuntu24.04 \
-  --disk /var/lib/libvirt/images/ubuntu-server-2404.qcow2,bus=virtio \
-  --disk /var/lib/libvirt/boot/ubuntu-server-2404-cloud-init.iso,device=cdrom \
+  --disk /var/lib/libvirt/images/swamp.qcow2,bus=virtio \
+  --disk /var/lib/libvirt/boot/swamp-cloud-init.iso,device=cdrom \
   --network network=host-network,model=virtio \
   --graphics none \
   --noautoconsole \
@@ -162,10 +162,7 @@ hideInToc: true
 
 ```bash
 # Command line console
-virsh console ubuntu-server-2404
-
-# Graphical console
-virt-viewer ubuntu-server-2404
+virsh console swamp
 ```
 
 ---
@@ -191,9 +188,9 @@ $ sudo shutdown -h now
 
 On the host
 ```bash
-$ virsh domblklist ubuntu-server-2404
-$ virsh change-media ubuntu-server-2404 sda --eject
-$ sudo rm /var/lib/libvirt/boot/ubuntu-server-2404-cloud-init.iso
+$ virsh domblklist swamp
+$ virsh change-media swamp sda --eject
+$ sudo rm /var/lib/libvirt/boot/swamp-cloud-init.iso
 ```
 
 ---
@@ -203,19 +200,19 @@ hideInToc: true
 # Snapshots
 
 ```bash
-$ virsh snapshot-create-as --domain ubuntu-server-2404 --name clean --description "Initial install"
-$ virsh snapshot-list ubuntu-server-2404
-$ virsh snapshot-revert ubuntu-server-2404 clean
-$ virsh snapshot-delete ubuntu-server-2404 clean
+$ virsh snapshot-create-as --domain swamp --name clean --description "Initial install"
+$ virsh snapshot-list swamp
+$ virsh snapshot-revert swamp clean
+$ virsh snapshot-delete swamp clean
 ```
 
 # Cleanup
 ```bash
-$ virsh shutdown ubuntu-server-2404
-$ virsh undefine ubuntu-server-2404 --nvram --remove-all-storage
+$ virsh shutdown swamp
+$ virsh undefine swamp --nvram --remove-all-storage
 ```
 
 # Get IP of virtual machine
 ```bash
-$ virsh domifaddr ubuntu-server-2404 --source agent
+$ virsh domifaddr swamp --source agent
 ```
