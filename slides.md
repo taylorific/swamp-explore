@@ -97,4 +97,9 @@ curl -fsSL swamp.club/install.sh | sh
 swamp repo init
 ```
 
+---
 
+# References
+
+- Building Infrastructure Automation with Claude and Swamp (Nick "keeb" Stinemates) - https://keeb.dev/2026/02/03/ai-native-infrastructure/
+- The Sight of Systems (Sergey) - https://magistr.me/blog/10/
