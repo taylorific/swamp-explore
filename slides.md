@@ -81,6 +81,12 @@ layout: section
 hideInToc: true
 ---
 
+Swamp uses Claude Code, but it is NOT MCP, so it doesn't burn through tokens. A Claude Code Pro subscription should be sufficient for most use cases.
+
+---
+hideInToc: true
+---
+
 # Install Claude Code
 
 ```bash
