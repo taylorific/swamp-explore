@@ -98,6 +98,13 @@ swamp repo init
 ```
 
 ---
+hideInToc: true
+---
+
+`claude.md` only gets written out the first time you run `swamp repo init` per Antropic's recommendation - don't mess with `claude.md` files. Skills get updated on continuously.
+
+
+---
 
 # References
 
