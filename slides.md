@@ -93,6 +93,10 @@ hideInToc: true
 curl -fsSL https://claude.ai/install.sh | bash
 ```
 
+```bash
+claude doctor
+```
+
 ---
 hideInToc: true
 ---
